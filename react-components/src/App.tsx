@@ -6,6 +6,7 @@ import { ConfigProvider } from 'antd';
 
 // Import Ant Design's reset CSS to ensure consistent styling across browsers
 import 'antd/dist/reset.css';
+import CrudExample from './pages/CrudExample';
 
 
 // Define the main App component using TypeScript's React.FC (Function Component) type
@@ -24,6 +25,7 @@ const App: React.FC = () => {
     >
       {/* Main container with minimum height to fill the screen and a light gray background */}
       <div style={{ minHeight: '100vh', backgroundColor: '#f5f5f5' }}>
+        
         {/* Header section of the page with white background, padding, and a subtle shadow */}
         <header style={{ 
           background: '#fff', 
@@ -43,8 +45,10 @@ const App: React.FC = () => {
           </p>
         </header>
 
-     
-        
+        {/* Additional content/components will go here in the future */}
+        <main>
+          <CrudExample/>
+        </main>
       </div>
     </ConfigProvider>
   );
