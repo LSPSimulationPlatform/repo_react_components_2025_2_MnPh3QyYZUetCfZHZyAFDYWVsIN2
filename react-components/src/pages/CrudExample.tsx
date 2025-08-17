@@ -1,39 +1,49 @@
-// Import React to enable JSX syntax and React types
+// Import the React runtime and types to enable JSX and React.FC typing
 import React from 'react';
-// Import a reusable Input component (your own wrapper/component library)
-import  Input  from "../components/Input.tsx";
-// Import the custom hook that manages form state for this example
-import useCrudExample from '../hooks/crudExample/useCrudExample.tsx';
+// Import Ant Design's Grid components for responsive layout
+import { Row, Col } from 'antd';
 
-// Declare the CrudExample component using React.FC (function component)
+/**
+ * CrudExample (STEP-2)
+ * Layout-only scaffold that matches the CRD for STEP-2:
+ * - A single Row with two Cols (8/24 and 16/24 on large screens).
+ * - Left column is a placeholder for the form.
+ * - Right column is a placeholder for the table.
+ */
 const CrudExample: React.FC = () => {
-  // Call the custom hook at the top level (React Hooks rule).
-  // It returns the current form state and a curried change handler.
-  const {
-    formData,           // { name: string } — current form values
-    handleInputChange,  // (field: keyof formData) => (e) => void — updates formData[field]
-  } = useCrudExample(); // Initialize and subscribe to the hook's state
-
-  // Render the component UI
+  // Functional component body begins; returns JSX
   return (
-    // A simple centered container with padding and a fixed max width
-    <div style={{ padding: '24px', maxWidth: '600px', margin: '0 auto' }}>
-      {/* Controlled Input bound to formData.name.
-          - label: field caption shown by the reusable Input
-          - placeholder: hint text inside the input
-          - value: the current value from form state (keeps input controlled)
-          - onChange: uses a curried handler to update the 'name' field only
-          - required: marks the field as mandatory (UI/validation handled by Input) */}
-      <Input
-        label="Name"
-        placeholder="Enter name"
-        value={formData.name}
-        onChange={handleInputChange('name')}
-        required
-      />
+    // Outer container to constrain width, center content, and add breathing room
+    <div
+      style={{
+        padding: 24,          // 24px inner spacing
+        maxWidth: 1200,       // limit line length / content width
+        margin: '0 auto',     // center horizontally
+      }}
+    >
+      {/* Grid row: 24px horizontal & vertical gutters between columns */}
+      <Row gutter={[24, 24]}>
+        {/* LEFT COLUMN — Form section (placeholder) */}
+        {/* xs=24 => full width on extra-small screens; lg=8 => 8/24 (~33%) on large screens */}
+        <Col xs={24} lg={8}>
+          {/* Section heading with zero margin to keep tight spacing */}
+          <h2 style={{ margin: 0 }}>Form Section</h2>
+          {/* Brief note about what will go here later (inputs, validation, etc.) */}
+          <p style={{ marginTop: 8 }}>Inputs and validation will be added here.</p>
+        </Col>
+
+        {/* RIGHT COLUMN — Table section (placeholder) */}
+        {/* xs=24 => full width on small screens; lg=16 => 16/24 (~67%) on large screens */}
+        <Col xs={24} lg={16}>
+          {/* Section heading mirrors the left column for visual consistency */}
+          <h2 style={{ margin: 0 }}>Table Section</h2>
+          {/* Placeholder text indicating where the data grid and actions will live */}
+          <p style={{ marginTop: 8 }}>Data table and actions will be rendered here.</p>
+        </Col>
+      </Row>
     </div>
   );
 };
 
-// Export as default so other modules (e.g., App.tsx) can import it directly
+// Default export so other modules can import without named braces
 export default CrudExample;
