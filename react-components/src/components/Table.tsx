@@ -72,22 +72,22 @@ function Table<T extends object = any>({
       ),
     } : null;
 
-  // Combine columns with action column if present
-  const finalColumns = actionColumn ? [...columns, actionColumn] : columns;
+    // Combine columns with action column if present
+    const finalColumns = actionColumn ? [...columns, actionColumn] : columns;
 
-  // Handle rowKey generation for each row
-  const getRowKey = (record: T): React.Key => {
-    if (rowKey) {
-      if (typeof rowKey === 'function') {
-        // If rowKey is a function, call it with the record
-        return rowKey(record);
+    // Handle rowKey generation for each row
+    const getRowKey = (record: T): React.Key => {
+      if (rowKey) {
+        if (typeof rowKey === 'function') {
+          // If rowKey is a function, call it with the record
+          return rowKey(record);
+        }
+        // If rowKey is a property name, use it from the record
+        return record[rowKey] as React.Key;
       }
-      // If rowKey is a property name, use it from the record
-      return record[rowKey] as React.Key;
-    }
-    // Fallback: generate a random key (not recommended for production)
-    return Math.random().toString();
-  };
+      // Fallback: generate a random key (not recommended for production)
+      return Math.random().toString();
+    };
 
   return (
     <AntTable
