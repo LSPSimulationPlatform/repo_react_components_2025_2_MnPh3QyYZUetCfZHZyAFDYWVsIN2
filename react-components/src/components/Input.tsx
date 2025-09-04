@@ -32,6 +32,7 @@ const Input: React.FC<any> = ({
   className,
   style,
 }) => {
+  console.log('Rendering Input:', { label, value }); // Debug log to trace renders and props
   return (
     // Container div that accepts custom className and style
     <div className={className} style={style}>
