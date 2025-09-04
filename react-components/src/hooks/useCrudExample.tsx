@@ -28,9 +28,8 @@ export default function useCrudExample() {
    * @param field - The field name to update
    * @returns Change event handler
    */
-  const handleInputChange = (field: string) =>
+  const handleInputChange = (field: string) => 
     (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-      console.log('Input Change:', field, e.target.value); // - Debug log to trace input changes
       setFormData(prev => ({ ...prev, [field]: e.target.value })); // - Updates specific field in formData using dynamic key, preserving other fields
     }; // - Returns curried function that captures field name and handles input/textarea change events
 

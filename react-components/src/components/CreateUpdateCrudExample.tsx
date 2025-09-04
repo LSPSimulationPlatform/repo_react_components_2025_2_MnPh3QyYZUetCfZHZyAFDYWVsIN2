@@ -14,57 +14,57 @@ export default function CreateUpdateCrudExample({
   handleCancelEdit, // - Function to cancel edit mode and clear form
   isSubmitting, // - Boolean loading state to show submission progress
   editingRecord // - Current record being edited (null for create mode)
-}: any) { // - Form component that handles both create and update operations based on editingRecord state
+}:any) { // - Form component that handles both create and update operations based on editingRecord state
   return (
     <Card
-      title={editingRecord ? 'Edit Record' : 'Create New Record'} // - Dynamic title based on form mode (edit vs create)
-      footer={
-        <div style={{ display: 'flex', gap: '8px', justifyContent: 'flex-end' }}>
-          {editingRecord && (
-            <Button
-              text="Cancel" // - Cancel button text
-              onClick={handleCancelEdit} // - Handler to exit edit mode and clear form
-              variant="secondary" // - Secondary styling to distinguish from primary action
-            />
-          )}
+    title={editingRecord ? 'Edit Record' : 'Create New Record'} // - Dynamic title based on form mode (edit vs create)
+    footer={
+      <div style={{ display: 'flex', gap: '8px', justifyContent: 'flex-end' }}>  
+        {editingRecord && (
           <Button
-            text={editingRecord ? 'Update' : 'Create'} // - Dynamic button text based on form mode
-            onClick={handleSubmit} // - Handler for form submission with validation
-            variant="primary" // - Primary button styling for main action
-            loading={isSubmitting} // - Show loading spinner during form submission
+            text="Cancel" // - Cancel button text
+            onClick={handleCancelEdit} // - Handler to exit edit mode and clear form
+            variant="secondary" // - Secondary styling to distinguish from primary action
           />
-        </div>
-      } // - Footer with conditional Cancel button and dynamic Submit button
-    >
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-        <Input
-          label="Name" // - Field label for accessibility and user guidance
-          placeholder="Enter name" // - Hint text to guide user input
-          value={formData.name} // - Controlled input value from form state
-          onChange={handleInputChange('name')} // - Handler for name field changes using curried function
-          required // - Mark field as required with red asterisk indicator
-        />
-
-        <SelectBox
-          label="Category" // - Field label for dropdown selection
-          options={categoryOptions} // - Array of selectable category options
-          value={formData.category} // - Currently selected category value
-          onChange={handleSelectChange} // - Handler for category selection changes
-          placeholder="Select a category" // - Hint text when no option is selected
-          required // - Mark field as required with red asterisk indicator
-        />
-
-        <TextArea
-          label="Description" // - Field label for multi-line text input
-          placeholder="Enter description" // - Hint text to guide user input
-          value={formData.description} // - Controlled textarea value from form state
-          onChange={handleInputChange('description')} // - Handler for description field changes
-          rows={4} // - Set textarea height to 4 visible rows
-          maxLength={500} // - Limit description to 500 characters
-          showCount // - Display character counter for user feedback
+        )}  
+        <Button
+          text={editingRecord ? 'Update' : 'Create'} // - Dynamic button text based on form mode
+          onClick={handleSubmit} // - Handler for form submission with validation
+          variant="primary" // - Primary button styling for main action
+          loading={isSubmitting} // - Show loading spinner during form submission
         />
       </div>
-    </Card> // - Card wrapper provides visual container with title and action buttons
+    } // - Footer with conditional Cancel button and dynamic Submit button
+  >
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>  
+      <Input
+        label="Name" // - Field label for accessibility and user guidance
+        placeholder="Enter name" // - Hint text to guide user input
+        value={formData.name} // - Controlled input value from form state
+        handleInputChange={handleInputChange('name')} // - Handler for name field changes using curried function
+        required // - Mark field as required with red asterisk indicator
+      />  
+
+      <SelectBox
+        label="Category" // - Field label for dropdown selection
+        options={categoryOptions} // - Array of selectable category options
+        value={formData.category} // - Currently selected category value
+        handleSelectChange={handleSelectChange} // - Handler for category selection changes
+        placeholder="Select a category" // - Hint text when no option is selected
+        required // - Mark field as required with red asterisk indicator
+      />  
+
+      <TextArea
+        label="Description" // - Field label for multi-line text input
+        placeholder="Enter description" // - Hint text to guide user input
+        value={formData.description} // - Controlled textarea value from form state
+        handleInputChange={handleInputChange('description')} // - Handler for description field changes
+        rows={4} // - Set textarea height to 4 visible rows
+        maxLength={500} // - Limit description to 500 characters
+        showCount // - Display character counter for user feedback
+      /> 
+    </div>
+  </Card> // - Card wrapper provides visual container with title and action buttons
   )
 }
 
